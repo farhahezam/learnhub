@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>teachers</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="index.html" class="logo">LearnHUB</a>
+
+      <form action="search.html" method="get" class="search-form">
+   <input type="text" name="query" placeholder="search courses..." required>
+   <button type="submit" class="fas fa-search"></button>
+</form>
+
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+         <a href="cart.html"><div id="cart-btn" class="fa-solid fa-cart-shopping"></div></a>
+      </div>
+
+      <div class="profile">
+         <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+         <h3 class="profile-name"></h3>
+         <p class="profile-role"></p>
+  
+      <div class="profile-actions">
+         <a href="profile.html" class="btn">view profile</a>
+         <a href="#" class="logoutBtn option-btn">logout</a>
+
+      </div>
+
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+      <h3 class="profile-name"></h3>
+      <p class="profile-role"></p>
+
+      <a href="profile.html" class="btn">view profile</a>
+   </div>
+
+   <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="feedback.html"><i class="fas fa-comments"></i><span>Discussion Forum</span></a>
+   </nav>
+
+</div>
+
+<section class="teachers">
+   <h1 class="heading">expert teachers</h1>
+
+   <form action="" method="post" class="search-tutor">
+      <input type="text" name="search_box" placeholder="search tutors..." required maxlength="100">
+      <button type="submit" class="fas fa-search" name="search_tutor"></button>
+   </form>
+
+   <div class="box-container" id="teacherContainer">
+      <!-- Teacher cards will be inserted dynamically -->
+   </div>
+</section>
+
+<footer class="footer">
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved!
+</footer>
+
+<script src="js/script.js"></script>
+
+<script>
+// Only 4 unique teachers
+const teachers = [
+   { name: "Adib Rahman", image: "pic-adib.jpg" },
+   { name: "Nur Hidayah", image: "pic-hidayah.jpg" },
+   { name: "Syafiq Azman", image: "pic-syafiq.jpg" },
+   { name: "Farah Noor", image: "pic-farah.jpg" }
+];
+
+const container = document.getElementById('teacherContainer');
+
+teachers.forEach(teacher => {
+   const box = document.createElement('div');
+   box.classList.add('box');
+
+   box.innerHTML = `
+      <div class="tutor">
+         <img src="images/${teacher.image}" alt="${teacher.name}">
+         <div>
+            <h3>${teacher.name}</h3>
+         </div>
+      </div>
+      <a href="teacher_profile.html?teacher=${encodeURIComponent(teacher.name)}" class="inline-btn">view profile</a>
+   `;
+
+   container.appendChild(box);
+});
+</script>
+
+</body>
+</html>

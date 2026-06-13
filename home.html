@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>LearnHUB | Home </title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="INDEX-page">
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="home.html" class="logo">LearnHUB</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         <div id="search-btn" class="fas fa-search"></div>
+         <a href="login.html" id="user-btn" class="fas fa-user"></a>
+      </div>
+
+
+      <div class="profile">
+         <div class="flex-btn">
+            <a href="login.html" class="option-btn">login</a>
+            <a href="register.html" class="option-btn">register</a>
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<section class="about">
+
+   <div class="row">
+
+      <div class="image">
+         <img src="images/about-img.svg" alt="">
+      </div>
+
+      <div class="content">
+         <h3>why choose us?</h3>
+         <p>Education goes two-way communication on LearnHUB. We allow you to indulge in a one-on-one session with our qualified instructors to further hone your personal skills to land you a better future.</p>
+         <a href="register.html" class="inline-btn">Sign up</a>
+      </div>
+
+   </div>
+
+   <div class="box-container">
+
+      <div class="box">
+         <i class="fas fa-graduation-cap"></i>
+         <div>
+            <h3>+10k</h3>
+            <p>online courses</p>
+         </div>
+      </div>
+
+      <div class="box">
+         <i class="fas fa-user-graduate"></i>
+         <div>
+            <h3>+40k</h3>
+            <p>enrollers</p>
+         </div>
+      </div>
+
+      <div class="box">
+         <i class="fas fa-chalkboard-user"></i>
+         <div>
+            <h3>+2k</h3>
+            <p>expert instructors</p>
+         </div>
+      </div>
+
+      <div class="box">
+         <i class="fas fa-briefcase"></i>
+         <div>
+            <h3>Up to 90%</h3>
+            <p>users left full star reviews</p>
+      </div>
+
+   </div>
+
+</section> 
+
+<section class="courses">
+   <h1 class="heading">Our Courses</h1>
+
+   <div class="box-container" id="indexCoursesContainer">
+      <!-- Courses will be dynamically populated here -->
+   </div>
+</section>
+
+<section class="teachers">
+
+   <h1 class="heading">Our Top Instructors</h1>
+
+   <form action="" method="post" class="search-tutor">
+      <input type="text" name="search_box" placeholder="search tutors..." required maxlength="100">
+      <button type="submit" class="fas fa-search" name="search_tutor"></button>
+   </form>
+
+   <div class="box-container">
+
+      <div class="box">
+         <div class="tutor">
+            <img src="images/pic-2.jpg" alt="">
+            <div>
+               <h3>Nur Hidayah</h3>
+               <span>developer</span>
+            </div>
+         </div>
+         <p>total playlists : <span>4</span></p>
+         <p>total videos : <span>18</span></p>
+         <p>total likes : <span>1208</span></p>
+         <a href="teacher_profile.html" class="inline-btn">view profile</a>
+      </div>
+
+      <div class="box">
+         <div class="tutor">
+            <img src="images/pic-3.jpg" alt="">
+            <div>
+               <h3>Adib Rahman</h3>
+               <span>developer</span>
+            </div>
+         </div>
+         <p>total playlists : <span>4</span></p>
+         <p>total videos : <span>18</span></p>
+         <p>total likes : <span>1208</span></p>
+         <a href="teacher_profile.html" class="inline-btn">view profile</a>
+      </div>
+
+      <div class="box">
+         <div class="tutor">
+            <img src="images/pic-4.jpg" alt="">
+            <div>
+               <h3>Syafiq Rahman</h3>
+               <span>developer</span>
+            </div>
+         </div>
+         <p>total playlists : <span>4</span></p>
+         <p>total videos : <span>18</span></p>
+         <p>total likes : <span>1208</span></p>
+         <a href="teacher_profile.html" class="inline-btn">view profile</a>
+      </div>
+
+      </div>
+
+   </div>
+
+</section>
+
+<section class="reviews">
+
+   <h1 class="heading">user's reviews</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <p>The lectures are very straightforward and covers every important information one needs to know.</p>
+         <div class="student">
+            <img src="images/pic-2.jpg" alt="">
+            <div>
+               <h3>Riza Hawkeye</h3>
+               <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <p>Convenient website! It got almost every coding courses that can come in handy for complete beginners. </p>
+         <div class="student">
+            <img src="images/pic-3.jpg" alt="">
+            <div>
+               <h3>Alphonse ELric</h3>
+               <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <p>LearnHUB was recommended to me by a colleague once and I have been recommending it to everyone else ever since because they have everything in here! Super cool. </p>
+         <div class="student">
+            <img src="images/pic-4.jpg" alt="">
+            <div>
+               <h3>Damian Blackwood</h3>
+               <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <p>Superb! Love it so much.</p>
+         <div class="student">
+            <img src="images/pic-5.jpg" alt="">
+            <div>
+               <h3>Madeleine</h3>
+               <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <p>Registering for any avaiable is quick and easy and it even has progress tracker which helps you to get back on where you left off in case you forget :) </p>
+         <div class="student">
+            <img src="images/pic-6.jpg" alt="">
+            <div>
+               <h3>Seth Lowell</h3>
+               <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="box">
+         <p>The instructors here are so thorough with their course content making it easy to understand the module given.</p>
+         <div class="student">
+            <img src="images/pic-7.jpg" alt="">
+            <div>
+               <h3>Meryl Stryfe</h3>
+               <div class="stars">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star-half-alt"></i>
+               </div>
+            </div>
+         </div>
+      </div>
+
+   </div>
+
+</section>
+
+<footer class="footer">
+
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved
+
+</footer>
+
+   <script>
+(function() {
+   // Courses data (same as in courses.html)
+   let coursesData = [
+      { course: "Complete HTML Tutorial", teacher: "Adib Rahman", image: "thumb-1.png" },
+      { course: "Complete CSS Tutorial", teacher: "Nur Hidayah", image: "thumb-2.png" },
+      { course: "Complete JavaScript Tutorial", teacher: "Syafiq Azman", image: "thumb-3.png" },
+      { course: "Complete Bootstrap Tutorial", teacher: "Nur Hidayah", image: "thumb-4.png" },
+      { course: "Complete jQuery Tutorial", teacher: "Syafiq Azman", image: "thumb-5.png" },
+      { course: "Complete SASS Tutorial", teacher: "Farah Noor", image: "thumb-6.png" },
+      { course: "Complete PHP Tutorial", teacher: "Farah Noor", image: "thumb-7.png" },
+      { course: "Complete MySQL Tutorial", teacher: "Adib Rahman", image: "thumb-8.png" },
+      { course: "Complete React Tutorial", teacher: "Syafiq Azman", image: "thumb-9.png" }
+   ];
+
+   let container = document.getElementById('indexCoursesContainer');
+
+   coursesData.forEach(course => {
+      let box = document.createElement('div');
+      box.classList.add('box');
+
+      box.innerHTML = `
+         <div class="thumb">
+            <img src="images/${course.image}" alt="${course.course}">
+            <span>10 videos</span>
+         </div>
+         <h3 class="title">${course.course}</h3>
+         <p class="teacher-name">Teacher: ${course.teacher}</p>
+      `;
+      container.appendChild(box);
+   });
+})();
+</script>
+
+</body>
+</html>

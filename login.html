@@ -1,0 +1,152 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>login</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="login-page">
+
+<header class="header login-header">
+   <section class="flex">
+
+      <a href="home.html" class="logo">LearnHUB</a>
+
+      <div class="icons">
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+   </section>
+</header>
+
+
+
+<section class="form-container">
+
+   <form id="loginForm" enctype="multipart/form-data">
+      <h3>login now</h3>
+      <p>your email <span>*</span></p>
+      <input type="email" name="email" placeholder="enter your email" required maxlength="50" class="box">
+      <p>your password <span>*</span></p>
+      <input type="password" name="pass" placeholder="enter your password" required maxlength="20" class="box">
+      <input type="submit" value="login" name="submit" class="btn">
+      <p class="signup-link">
+         No account?
+         <a href="register.html">Sign up</a>
+      </p>
+
+      <p class="signup-link">
+         <a href="#" id="forgotBtn">Forgot password?</a>
+      </p>
+
+   </form>
+
+   <form id="forgotForm" class="hidden">
+   <h3>reset password</h3>
+
+   <p>your email</p>
+   <input type="email" id="resetEmail" placeholder="enter your email" class="box">
+
+   <p>new password</p>
+   <input type="password" id="resetPass" placeholder="new password" class="box">
+
+   <p>confirm password</p>
+   <input type="password" id="resetConfirm" placeholder="confirm password" class="box">
+
+   <input type="submit" value="reset password" class="btn">
+
+   <p class="signup-link">
+      <a href="#" id="backToLogin">Back to login</a>
+   </p>
+</form>
+
+
+</section>
+
+
+
+<footer class="footer">
+
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e){
+   e.preventDefault();
+
+   const email = document.querySelector('input[name="email"]').value;
+   const pass = document.querySelector('input[name="pass"]').value;
+
+   const storedUser = JSON.parse(localStorage.getItem('user'));
+
+   if(!storedUser){
+      alert("No account found. Please register first.");
+      return;
+   }
+
+   if(email === storedUser.email && pass === storedUser.password){
+      localStorage.setItem('loggedIn', 'true');
+      window.location.href = "index.html";
+   } else {
+      alert("Invalid email or password");
+   }
+});
+</script>
+
+<script>
+const loginForm = document.querySelector('.form-container form');
+const forgotForm = document.getElementById('forgotForm');
+
+document.getElementById('forgotBtn').onclick = function (e) {
+   e.preventDefault();
+   loginForm.classList.add('hidden');
+   forgotForm.classList.remove('hidden');
+};
+
+document.getElementById('backToLogin').onclick = function (e) {
+   e.preventDefault();
+   forgotForm.classList.add('hidden');
+   loginForm.classList.remove('hidden');
+};
+
+forgotForm.onsubmit = function (e) {
+   e.preventDefault();
+
+   const email = document.getElementById('resetEmail').value.trim();
+   const pass = document.getElementById('resetPass').value;
+   const confirm = document.getElementById('resetConfirm').value;
+
+   let user = JSON.parse(localStorage.getItem('user'));
+
+   if (!user || user.email !== email) {
+      alert("Email not found");
+      return;
+   }
+
+   if (pass !== confirm) {
+      alert("Passwords do not match");
+      return;
+   }
+
+   user.password = pass;
+   localStorage.setItem('user', JSON.stringify(user));
+
+   alert("Password reset successful");
+   window.location.reload();
+};
+</script>
+
+   
+</body>
+</html>

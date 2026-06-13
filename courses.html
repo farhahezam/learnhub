@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>COURSES</title>
+
+   <!-- Font Awesome CDN -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- Custom CSS -->
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+   <header class="header">
+      
+      <section class="flex">
+
+         <a href="index.html" class="logo">LearnHUB</a>
+
+         <form action="search.html" method="get" class="search-form">
+   <input type="text" name="query" placeholder="search courses..." required>
+   <button type="submit" class="fas fa-search"></button>
+</form>
+
+
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+            <a href="cart.html"><div id="cart-btn" class="fa-solid fa-cart-shopping"></div></a>
+
+         </div>
+
+         <div class="profile">
+            <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+            <h3 class="profile-name"></h3>
+            <p class="profile-role"></p>
+            
+            <div class="profile-actions">
+               <a href="profile.html" class="btn">view profile</a>
+               <a href="#" class="logoutBtn option-btn">logout</a>
+
+            </div>
+
+         </div>
+
+      </section>
+
+   </header>   
+
+   <div class="side-bar">
+
+      <div id="close-btn">
+         <i class="fas fa-times"></i>
+      </div>
+
+      <div class="profile">
+         <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+         <h3 class="profile-name"></h3>
+         <p class="profile-role"></p>
+
+         <a href="profile.html" class="btn">view profile</a>
+      </div>
+
+      <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="feedback.html"><i class="fas fa-comments"></i><span>Discussion Forum</span></a>
+   </nav>
+
+   </div>
+
+<!-- ================= COURSES ================= -->
+<section class="courses">
+<!-- FILTER & SEARCH BAR -->
+   <div class="course-filter-bar">
+      <input type="text" id="searchInput" placeholder="Search course title...">
+
+      <select id="categoryFilter">
+         <option value="all">All Categories</option>
+         <option value="html">HTML</option>
+         <option value="css">CSS</option>
+         <option value="javascript">JavaScript</option>
+         <option value="php">PHP</option>
+      </select>
+
+      <select id="levelFilter">
+         <option value="all">All Levels</option>
+         <option value="beginner">Beginner</option>
+         <option value="intermediate">Intermediate</option>
+         <option value="advanced">Advanced</option>
+      </select>
+
+      <select id="instructorFilter">
+   <option value="all">All Instructors</option>
+   <option value="adib">Adib Rahman</option>
+   <option value="hidayah">Nur Hidayah</option>
+   <option value="syafiq">Syafiq Azman</option>
+   <option value="farah">Farah Noor</option>
+</select>
+
+   </div>
+
+<div class="box-container">
+
+   <!-- HTML (FREE) -->
+   <div class="box" data-category="html" data-level="beginner" data-instructor="adib">
+      <div class="tutor">
+         <img src="images/pic-adib.jpg" alt="">
+         <div class="info">
+            <h3>Adib Rahman</h3>
+            <span>Beginner</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge free">FREE</div>
+         <img src="images/thumb-1.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete HTML Tutorial</h3>
+      <a href="playlist.html?course=html" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- CSS (FREE) -->
+   <div class="box" data-category="css" data-level="beginner" data-instructor="hidayah">
+      <div class="tutor">
+         <img src="images/pic-hidayah.jpg" alt="">
+         <div class="info">
+            <h3>Nur Hidayah</h3>
+            <span>Beginner</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge free">FREE</div>
+         <img src="images/thumb-2.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete CSS Tutorial</h3>
+      <a href="playlist.html?course=css" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- JavaScript (PAID) -->
+   <div class="box" data-category="javascript" data-level="intermediate" data-instructor="syafiq">
+      <div class="tutor">
+         <img src="images/pic-syafiq.jpg" alt="">
+         <div class="info">
+            <h3>Syafiq Azman</h3>
+            <span>Intermediate</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-3.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete JavaScript Tutorial</h3>
+      <a href="playlist.html?course=javascript" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- Bootstrap (PAID) -->
+   <div class="box" data-category="css" data-level="intermediate" data-instructor="hidayah">
+      <div class="tutor">
+         <img src="images/pic-hidayah.jpg" alt="">
+         <div class="info">
+            <h3>Nur Hidayah</h3>
+            <span>Intermediate</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-4.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete Bootstrap Tutorial</h3>
+      <a href="playlist.html?course=bootstrap" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- jQuery (PAID) -->
+   <div class="box" data-category="javascript" data-level="advanced" data-instructor="syafiq">
+      <div class="tutor">
+         <img src="images/pic-syafiq.jpg" alt="">
+         <div class="info">
+            <h3>Syafiq Azman</h3>
+            <span>Advanced</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-5.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete jQuery Tutorial</h3>
+      <a href="playlist.html?course=jquery" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- SASS (PAID) -->
+   <div class="box" data-category="css" data-level="advanced" data-instructor="farah">
+      <div class="tutor">
+         <img src="images/pic-farah.jpg" alt="">
+         <div class="info">
+            <h3>Farah Noor</h3>
+            <span>Advanced</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-6.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete SASS Tutorial</h3>
+      <a href="playlist.html?course=sass" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- PHP (PAID) -->
+   <div class="box" data-category="php" data-level="intermediate" data-instructor="farah">
+      <div class="tutor">
+         <img src="images/pic-farah.jpg" alt="">
+         <div class="info">
+            <h3>Farah Noor</h3>
+            <span>Intermediate</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-7.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete PHP Tutorial</h3>
+      <a href="playlist.html?course=php" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- MySQL (PAID) -->
+   <div class="box" data-category="php" data-level="advanced" data-instructor="adib">
+      <div class="tutor">
+         <img src="images/pic-adib.jpg" alt="">
+         <div class="info">
+            <h3>Adib Rahman</h3>
+            <span>Advanced</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-8.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete MySQL Tutorial</h3>
+      <a href="playlist.html?course=mysql" class="inline-btn">View Course Details</a>
+   </div>
+
+   <!-- React (PAID) -->
+   <div class="box" data-category="javascript" data-level="advanced" data-instructor="syafiq">
+      <div class="tutor">
+         <img src="images/pic-syafiq.jpg" alt="">
+         <div class="info">
+            <h3>Syafiq Azman</h3>
+            <span>Advanced</span>
+         </div>
+      </div>
+      <div class="thumb">
+         <div class="course-badge paid">PAID</div>
+         <img src="images/thumb-9.png" alt="">
+         <span>10 videos</span>
+      </div>
+      <h3 class="title">Complete React Tutorial</h3>
+      <a href="playlist.html?course=react" class="inline-btn">View Course Details</a>
+   </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved!
+
+</footer>
+<!-- Custom JS -->
+<script src="js/script.js"></script>
+
+</body>
+</html>

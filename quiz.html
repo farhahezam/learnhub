@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>watch</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+   <header class="header">
+      
+      <section class="flex">
+
+         <a href="index.html" class="logo">LearnHUB</a>
+
+         <form action="search.html" method="get" class="search-form">
+   <input type="text" name="query" placeholder="search courses..." required>
+   <button type="submit" class="fas fa-search"></button>
+</form>
+
+
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+            <a href="cart.html"><div id="cart-btn" class="fa-solid fa-cart-shopping"></div></a>
+
+         </div>
+
+         <div class="profile">
+            <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+            <h3 class="profile-name"></h3>
+            <p class="profile-role"></p>
+            
+            <div class="profile-actions">
+               <a href="profile.html" class="btn">view profile</a>
+               <a href="#" class="logoutBtn option-btn">logout</a>
+            </div>
+
+         </div>
+
+      </section>
+
+   </header>   
+
+   <div class="side-bar">
+
+      <div id="close-btn">
+         <i class="fas fa-times"></i>
+      </div>
+
+      <div class="profile">
+         <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+         <h3 class="profile-name"></h3>
+         <p class="profile-role"></p>
+
+         <a href="profile.html" class="btn">view profile</a>
+      </div>
+
+      <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i><span>home</span></a>
+     
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="feedback.html"><i class="fas fa-comments"></i><span>Discussion Forum</span></a>
+    
+   </nav>
+
+   </div>
+
+   <section class="quizContainer">
+
+      <div class="quiz-container">
+          <h1 class="heading" id="quizTitle">Quiz</h1>
+          <p id="quizDesc"></p>
+
+          <form id="quizForm">
+            <!-- questions injected by JS -->
+          </form>
+
+          <button class="inline-btn" onclick="submitQuiz()">Submit Quiz</button>
+      </div>
+
+   </section>
+   
+
+
+<footer class="footer">
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved!
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const course = params.get("course");
+const quizNumber = parseInt(params.get("quiz")) || 1;
+
+if(!course){
+ alert("Invalid course");
+ history.back();
+}
+
+/* ================= COURSE INFO ================= */
+const courseNames = {
+ html: "HTML",
+ css: "CSS",
+ javascript: "JavaScript",
+ bootstrap: "Bootstrap",
+ jquery: "jQuery",
+ sass: "SASS",
+ php: "PHP",
+ mysql: "MySQL",
+ react: "React"
+};
+
+const courseQuizzes = {
+ html: 3, css: 3, javascript: 5, bootstrap: 4,
+ jquery: 4, sass: 4, php: 5, mysql: 4, react: 5
+};
+
+const title = courseNames[course];
+const totalQuizzes = courseQuizzes[course];
+
+/* ================= STORAGE ================= */
+const progressKey = "quizProgress";
+const scoreKey = "quizScores";
+
+const progress = JSON.parse(localStorage.getItem(progressKey)) || {};
+const scores = JSON.parse(localStorage.getItem(scoreKey)) || {};
+
+const passedUntil = progress[course] || 0;
+
+/* ================= LOCK CHECK ================= */
+if(quizNumber > passedUntil + 1){
+ alert("🔒 You must pass previous quizzes first!");
+ window.location.href = `playlist.html?course=${course}`;
+}
+
+/* ================= QUIZ QUESTIONS ================= */
+const quizQuestions = [
+ {
+   q: `What is the main purpose of ${title}?`,
+   options: [
+     "Structuring content",
+     "Styling elements",
+     "Adding interactivity",
+     "All of the above"
+   ],
+   answer: 3
+ },
+ {
+   q: `Which is a core concept in ${title}?`,
+   options: [
+     "Syntax",
+     "Variables",
+     "Functions",
+     "All are correct"
+   ],
+   answer: 3
+ },
+ {
+   q: `${title} is mainly used in:`,
+   options: [
+     "Frontend",
+     "Backend",
+     "Database",
+     "Networking"
+   ],
+   answer: 0
+ }
+];
+
+/* ================= RENDER ================= */
+document.getElementById("quizTitle").innerText =
+ `${title} Quiz ${quizNumber}`;
+
+document.getElementById("quizDesc").innerText =
+ `You must score 3/3 to pass this quiz.`;
+
+const quizForm = document.getElementById("quizForm");
+
+quizQuestions.forEach((q,i)=>{
+ quizForm.innerHTML += `
+ <div class="box">
+   <h3>${i+1}. ${q.q}</h3>
+   ${q.options.map((opt,idx)=>`
+     <label style="display:block;margin:.5rem 0">
+       <input type="radio" name="q${i}" value="${idx}" required>
+       ${opt}
+     </label>
+   `).join("")}
+ </div>
+ `;
+});
+
+/* ================= SUBMIT ================= */
+function submitQuiz(){
+ let score = 0;
+
+ quizQuestions.forEach((q,i)=>{
+   const selected = document.querySelector(`input[name="q${i}"]:checked`);
+   if(selected && parseInt(selected.value) === q.answer){
+     score++;
+   }
+ });
+
+ if(score < quizQuestions.length){
+   alert(`❌ Failed! You scored ${score}/3. You need 3/3 to pass.`);
+   return;
+ }
+
+ /* ===== PASS ===== */
+ alert(`✅ Perfect! ${score}/3`);
+
+ scores[course] = scores[course] || {};
+ scores[course][quizNumber] = score;
+
+ progress[course] = Math.max(progress[course] || 0, quizNumber);
+
+ localStorage.setItem(progressKey, JSON.stringify(progress));
+ localStorage.setItem(scoreKey, JSON.stringify(scores));
+
+ /* ===== CERTIFICATE CHECK ===== */
+ if(progress[course] === totalQuizzes){
+   alert("🏆 Congratulations! Certificate unlocked!");
+ }
+
+ window.location.href = `playlist.html?course=${course}`;
+}
+</script>
+
+</body>
+</html>
+
+
+

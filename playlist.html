@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Video Playlist</title>
+
+   <!-- font awesome cdn link -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link -->
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+   <header class="header">
+      
+      <section class="flex">
+
+         <a href="index.html" class="logo">LearnHUB</a>
+
+        <form action="search.html" method="get" class="search-form">
+   <input type="text" name="query" placeholder="search courses..." required>
+   <button type="submit" class="fas fa-search"></button>
+</form>
+
+
+         <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <div id="user-btn" class="fas fa-user"></div>
+            <div id="toggle-btn" class="fas fa-sun"></div>
+            <a href="cart.html"><div id="cart-btn" class="fa-solid fa-cart-shopping"></div></a>
+
+         </div>
+
+         <div class="profile">
+            <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+            <h3 class="profile-name"></h3>
+            <p class="profile-role"></p>
+            
+            <div class="profile-actions">
+               <a href="profile.html" class="btn">view profile</a>
+               <a href="#" class="logoutBtn option-btn">logout</a>
+
+            </div>
+
+         </div>
+
+      </section>
+
+   </header>   
+
+   <div class="side-bar">
+
+      <div id="close-btn">
+         <i class="fas fa-times"></i>
+      </div>
+
+      <div class="profile">
+         <img src="images/pic-1.jpg" class="image user-avatar" alt="">
+         <h3 class="profile-name"></h3>
+         <p class="profile-role"></p>
+
+         <a href="profile.html" class="btn">view profile</a>
+      </div>
+
+      <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="feedback.html"><i class="fas fa-comments"></i><span>Discussion Forum</span></a>
+   </nav>
+
+   </div>
+
+<!-- ================= PLAYLIST DETAILS ================= -->
+
+<section class="playlist-details" id="playlistDetails"></section>
+
+<section class="playlist-videos">
+   <h1 class="heading">Lessons</h1>
+   <div class="box-container" id="playlistVideos"></div>
+</section>
+
+<section class="playlist-videos">
+   <h1 class="heading">Quizzes</h1>
+   <div class="box-container" id="quizContainer"></div>
+</section>
+<script src="js/script.js"></script>
+<script>
+
+
+/* ================== COURSE DATA ================== */
+const courses = {
+ html:{
+   title:"Complete HTML Tutorial",
+   description:"HTML is the standard markup language for creating web pages. This course teaches you how to structure content using elements, tags, images, links, forms, and semantic HTML for clean and accessible websites.",
+   free:true,
+   videos:6,
+   thumb:"images/thumb-1.png",
+   tutor:{name:"Adib Rahman",image:"images/pic-adib.jpg"},
+   quizzes:3
+ },
+
+ css:{
+   title:"Complete CSS Tutorial",
+   description:"CSS is used to style and design web pages. This course covers layouts, colors, fonts, Flexbox, Grid, animations, and responsive design to create visually attractive websites.",
+   free:true,
+   videos:6,
+   thumb:"images/thumb-2.png",
+   tutor:{name:"Nur Hidayah",image:"images/pic-hidayah.jpg"},
+   quizzes:3
+ },
+
+ javascript:{
+   title:"Complete JavaScript Tutorial",
+   description:"JavaScript brings interactivity to websites. In this course, you will learn variables, functions, conditions, loops, events, and DOM manipulation to build dynamic web applications.",
+   free:false,
+   price:100,
+   videos:9,
+   thumb:"images/thumb-3.png",
+   tutor:{name:"Syafiq Azman",image:"images/pic-syafiq.jpg"},
+   quizzes:5
+ },
+
+ bootstrap:{
+   title:"Complete Bootstrap Tutorial",
+   description:"Bootstrap is a popular front-end framework for creating responsive websites quickly. This course teaches you how to use Bootstrap components, grid systems, and utilities effectively.",
+   free:false,
+   price:80,
+   videos:9,
+   thumb:"images/thumb-4.png",
+   tutor:{name:"Nur Hidayah",image:"images/pic-hidayah.jpg"},
+   quizzes:4
+ },
+
+ jquery:{
+   title:"Complete jQuery Tutorial",
+   description:"jQuery simplifies JavaScript by making DOM manipulation, animations, and event handling easier. This course focuses on writing clean and efficient code using jQuery.",
+   free:false,
+   price:70,
+   videos:9,
+   thumb:"images/thumb-5.png",
+   tutor:{name:"Syafiq Azman",image:"images/pic-syafiq.jpg"},
+   quizzes:4
+ },
+
+ sass:{
+   title:"Complete SASS Tutorial",
+   description:"SASS is a CSS preprocessor that improves styling with variables, nesting, mixins, and reusable code. This course helps you write cleaner and more maintainable CSS.",
+   free:false,
+   price:70,
+   videos:9,
+   thumb:"images/thumb-6.png",
+   tutor:{name:"Farah Noor",image:"images/pic-farah.jpg"},
+   quizzes:4
+ },
+
+ php:{
+   title:"Complete PHP Tutorial",
+   description:"PHP is a server-side scripting language used to build dynamic websites. This course covers PHP basics, forms handling, sessions, and database integration.",
+   free:false,
+   price:120,
+   videos:9,
+   thumb:"images/thumb-7.png",
+   tutor:{name:"Farah Noor",image:"images/pic-farah.jpg"},
+   quizzes:5
+ },
+
+ mysql:{
+   title:"Complete MySQL Tutorial",
+   description:"MySQL is a database management system used to store and retrieve data efficiently. This course teaches SQL queries, database design, and integration with web applications.",
+   free:false,
+   price:100,
+   videos:9,
+   thumb:"images/thumb-8.png",
+   tutor:{name:"Adib Rahman",image:"images/pic-adib.jpg"},
+   quizzes:4
+ },
+
+ react:{
+   title:"Complete React Tutorial",
+   description:"React is a JavaScript library for building modern user interfaces. This course introduces components, state, props, hooks, and best practices for scalable applications.",
+   free:false,
+   price:150,
+   videos:9,
+   thumb:"images/thumb-9.png",
+   tutor:{name:"Syafiq Azman",image:"images/pic-syafiq.jpg"},
+   quizzes:5
+ }
+};
+
+
+/* ================== HELPERS ================== */
+const params = new URLSearchParams(window.location.search);
+const key = params.get("course");
+const course = courses[key];
+
+const progressKey = "quizProgress";
+const purchaseKey = "purchasedCourses";
+
+function getProgress(){
+ return JSON.parse(localStorage.getItem(progressKey)) || {};
+}
+function saveProgress(p){
+ localStorage.setItem(progressKey, JSON.stringify(p));
+}
+function getPurchased(){
+ return JSON.parse(localStorage.getItem(purchaseKey)) || {};
+}
+function savePurchased(p){
+ localStorage.setItem(purchaseKey, JSON.stringify(p));
+}
+/* ================== CART HELPERS ================== */
+function getCart(){
+  return JSON.parse(localStorage.getItem("productsInCart")) || {
+    itemsArray: [],
+    totalCost: 0
+  };
+}
+
+function saveCart(cart){
+  localStorage.setItem("productsInCart", JSON.stringify(cart));
+}
+
+/* ================== PAGE LOAD ================== */
+if(!course){
+ document.getElementById("playlistDetails").innerHTML="<h1>Course not found</h1>";
+ throw "";
+}
+
+const purchased = getPurchased();
+const progress = getProgress();
+const completed = progress[key] || 0;
+const percent = Math.round((completed / course.quizzes) * 100);
+
+/* ================== DETAILS ================== */
+document.getElementById("playlistDetails").innerHTML = `
+<h1 class="heading">${course.title}</h1>
+<div class="row">
+ <div class="column">
+  <div class="thumb">
+   <img src="${course.thumb}">
+   <span>${course.videos} videos</span>
+  </div>
+ </div>
+ <div class="column">
+  <div class="details">
+    <h3>About Course</h3>
+    <p>${course.description}</p>
+  </div>
+  <br>
+  <div class="tutor">
+   <img src="${course.tutor.image}">
+   <div>
+    <h3>${course.tutor.name}</h3>
+    <p>Progress: ${percent}%</p>
+   </div>
+  </div>
+  ${!course.free && !purchased[key]
+   ? `<button class="inline-btn" onclick="enroll()">Enroll Now (RM${course.price})</button>`
+   : ``}
+ </div>
+</div>
+`;
+
+/* ================== VIDEOS ================== */
+const videoBox = document.getElementById("playlistVideos");
+
+for(let i=1;i<=course.videos;i++){
+ if(!course.free && !purchased[key]){
+  videoBox.innerHTML += `
+   <div class="box locked">
+    <i class="fas fa-lock"></i>
+    <h3>Lesson ${i}</h3>
+   </div>`;
+ }else{
+  videoBox.innerHTML += `
+   <a class="box" href="watch-video.html?course=${key}&lesson=${i}">
+    <i class="fas fa-play"></i>
+    <img src="${course.thumb}">
+    <h3>Lesson ${i}</h3>
+   </a>`;
+ }
+}
+
+
+
+/* ================== QUIZZES ================== */
+const quizBox = document.getElementById("quizContainer");
+
+for(let q=1;q<=course.quizzes;q++){
+ const done = completed >= q;
+ quizBox.innerHTML += `
+ <a class="box ${done?'completed':''}"
+    href="quiz.html?course=${key}&quiz=${q}">
+   <i class="fas fa-question-circle"></i>
+   <h3>Quiz ${q} ${done?'✔':''}</h3>
+ </a>`;
+}
+
+/* ================== ENROLL ================== */
+function enroll(){
+  let cart = getCart();
+
+  // prevent duplicate add
+  if(cart.itemsArray.find(item => item.key === key)){
+    alert("Course already in cart!");
+    window.location.href = "cart.html";
+    return;
+  }
+
+  cart.itemsArray.push({
+    key: key,
+    name: course.title,
+    price: course.price,
+    inCart: 1
+  });
+
+  cart.totalCost += course.price;
+  saveCart(cart);
+
+  // redirect to cart page
+  window.location.href = "cart.html";
+}
+
+</script>
+
+
+<footer class="footer">
+
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved!
+
+</footer>
+
+</body>
+</html>

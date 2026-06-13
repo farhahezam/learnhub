@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>update</title>
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="index.html" class="logo">LearnHUB</a>
+
+     <form action="search.html" method="get" class="search-form">
+   <input type="text" name="query" placeholder="search courses..." required>
+   <button type="submit" class="fas fa-search"></button>
+</form>
+
+
+      <div class="icons">
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+
+      <div class="profile">
+         <img class="image user-avatar" alt="">
+         <h3 class="name profile-name"></h3>
+         <p class="role profile-role"></p>
+
+         <div class="profile-actions">
+            <a href="profile.html" class="btn">view profile</a>
+            <a href="#" class="logoutBtn option-btn">logout</a>
+
+         </div>
+      </div>
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img class="image user-avatar" alt="">
+      <h3 class="name profile-name"></h3>
+      <p class="role profile-role"></p>
+
+      <a href="profile.html" class="btn">view profile</a>
+   </div>
+
+   <nav class="navbar">
+      <a href="index.html"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="about.html"><i class="fas fa-question"></i><span>about</span></a>
+      <a href="courses.html"><i class="fas fa-graduation-cap"></i><span>courses</span></a>
+      <a href="teachers.html"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="feedback.html"><i class="fas fa-comments"></i><span>Discussion Forum</span></a>
+      <a href="contact.html"><i class="fas fa-headset"></i><span>contact us</span></a>
+   </nav>
+
+</div>
+
+<section class="form-container">
+
+   <form id="updateForm" enctype="multipart/form-data">
+      <h3>update profile</h3>
+      <p>update name</p>
+      <input type="text" id="updateName" maxlength="50" class="box">
+      <p>update email</p>
+      <input type="email" id="updateEmail" maxlength="50" class="box">
+      <p>previous password</p>
+      <input type="password" id="oldPass" maxlength="20" class="box">
+      <p>new password</p>
+      <input type="password" id="newPass" maxlength="20" class="box">
+      <p>confirm password</p>
+      <input type="password" id="confirmPass" maxlength="20" class="box">
+      <p>update pic</p>
+      <input type="file" id="updateImage" accept="image/*" class="box">
+      <input type="submit" value="update profile" name="submit" class="btn">
+   </form>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="footer">
+
+   &copy; copyright @ 2025 by <span>LearnHUB</span> | all rights reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+<script>
+/* Protect page */
+if (localStorage.getItem('loggedIn') !== 'true') {
+   window.location.href = "about.html";
+}
+
+/* Load user */
+let user = JSON.parse(localStorage.getItem('user'));
+
+if (!user) {
+   window.location.href = "about.html";
+}
+
+/* Fill header & sidebar */
+document.querySelectorAll('.profile-name').forEach(el => {
+   el.innerText = user.name;
+});
+
+document.querySelectorAll('.profile-role').forEach(el => {
+   el.innerText = user.role || "Student";
+});
+
+document.querySelectorAll('.user-avatar').forEach(img => {
+   img.src = user.image;
+});
+
+/* Pre-fill form */
+document.getElementById('updateName').value = user.name;
+document.getElementById('updateEmail').value = user.email;
+
+/* Handle update */
+document.getElementById('updateForm').onsubmit = function (e) {
+   e.preventDefault();
+
+   const name = document.getElementById('updateName').value.trim();
+   const email = document.getElementById('updateEmail').value.trim();
+   const oldPass = document.getElementById('oldPass').value;
+   const newPass = document.getElementById('newPass').value;
+   const confirmPass = document.getElementById('confirmPass').value;
+   const imageInput = document.getElementById('updateImage');
+
+   if (name) user.name = name;
+   if (email) user.email = email;
+
+   /* Password update */
+   if (newPass || confirmPass) {
+      if (oldPass !== user.password) {
+         alert("Old password is incorrect");
+         return;
+      }
+      if (newPass !== confirmPass) {
+         alert("Passwords do not match");
+         return;
+      }
+      user.password = newPass;
+   }
+
+   /* Profile picture update */
+   if (imageInput.files.length > 0) {
+      const reader = new FileReader();
+      reader.onload = function () {
+         user.image = reader.result;
+         saveUser(user);
+      };
+      reader.readAsDataURL(imageInput.files[0]);
+   } else {
+      saveUser(user);
+   }
+};
+
+function saveUser(user) {
+   localStorage.setItem('user', JSON.stringify(user));
+   alert("Profile updated successfully");
+   window.location.href = "profile.html";
+}
+</script>
+
+
+   
+</body>
+</html>

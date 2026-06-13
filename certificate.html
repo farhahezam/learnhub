@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LearnHUB Certificate</title>
+
+<style>
+/* ===== PAGE SETUP ===== */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+body{
+  margin:0;
+  background:#f0f0f0;
+  font-family:"Georgia", serif;
+}
+
+/* ===== CERTIFICATE ===== */
+.certificate{
+  width:794px;
+  height:1123px;
+  margin:2rem auto;
+  background:#fff;
+  border:12px solid #6c3aa6;
+  padding:4rem;
+  box-sizing:border-box;
+  position:relative;
+}
+
+/* ===== HEADER ===== */
+.certificate-header{
+  text-align:center;
+}
+
+.certificate-header img{
+  width:260px;
+  margin-bottom:1.5rem;
+}
+
+.certificate-header h1{
+  font-size:3.8rem;
+  letter-spacing:2px;
+  margin-bottom:1rem;
+}
+
+.certificate-header p{
+  font-size:1.6rem;
+}
+
+/* ===== CONTENT ===== */
+.certificate-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical centering */
+  align-items: center;     /* horizontal centering */
+  height: 40vh;            /* adjust to your certificate height */
+  margin: 0 2rem;
+}
+
+.certificate-content .name {
+  font-size: 3.4rem;
+  font-weight: bold;
+  color: #6c3aa6;
+  margin: 1rem 0; /* reduce margin so it’s more centered */
+}
+
+.certificate-content .text {
+  font-size: 1.8rem;
+  margin: 0.5rem 0; /* tighter spacing */
+}
+
+.certificate-content .course {
+  font-size: 2.4rem;
+  font-weight: bold;
+  margin-top: 1rem; /* smaller gap to keep name centered */
+}
+
+
+/* ===== FOOTER ===== */
+.certificate-footer{
+  position:absolute;
+  bottom:5rem;
+  left:4rem;
+  right:4rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.signature{
+  text-align:center;
+}
+
+.signature img{
+  width: 300px;
+  margin: 0 auto;
+}
+
+.signature p{
+  margin-top:0;       /* removes gap above line */
+  padding-top:4px;    /* small controlled spacing */
+  border-top:2px solid #000;
+}
+
+.date{
+  font-size:1.4rem;
+}
+
+/* ===== PRINT ===== */
+.print-btn{
+  display:block;
+  margin:2rem auto;
+  padding:1rem 3rem;
+  font-size:1.6rem;
+  background:#6c3aa6;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+
+@media print{
+  body{
+    background:none;
+  }
+  .print-btn{
+    display:none;
+  }
+  .certificate{
+    margin:0;
+    box-shadow:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="certificate">
+
+  <!-- HEADER -->
+  <div class="certificate-header">
+    <!-- LOGO -->
+    <img src="images/learnhub-logo.png" alt="LearnHUB Logo">
+
+    <h1>CERTIFICATE OF COMPLETION</h1>
+    <p>This is to certify that</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="certificate-content">
+    <h1 id="studentName" class="student-name"></h1>
+
+    <p class="text">has successfully completed the course</p>
+
+    <h2 id="courseName"></h2>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="certificate-footer">
+    <div class="date">
+      <strong>Date</strong><br>
+      <span id="completionDate"></span>
+    </div>
+
+    <div class="signature">
+      <!-- SIGNATURE IMAGE -->
+      <img src="images/signature.png" alt="Signature">
+      <p>LearnHUB Authorized</p>
+    </div>
+  </div>
+
+</div>
+
+<button class="print-btn" onclick="window.print()">Download Certificate</button>
+
+<!-- AUTO-FILL SCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const params = new URLSearchParams(window.location.search);
+  const courseKey = params.get("course");
+
+  const courses = {
+    html:"Complete HTML Tutorial",
+    css:"Complete CSS Tutorial",
+    javascript:"Complete JavaScript Tutorial",
+    bootstrap:"Complete Bootstrap Tutorial",
+    jquery:"Complete JQuery Tutorial",
+    sass:"Complete SASS Tutorial",
+    php:"Complete PHP Tutorial",
+    mysql:"Complete MySQL Tutorial",
+    react:"Complete React Tutorial"
+  };
+
+  document.getElementById("courseName").innerText = courses[courseKey] || "Course";
+  document.getElementById("completionDate").innerText =
+    new Date().toLocaleDateString();
+
+});
+
+  // Get logged-in user
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  // Safety check
+  if(!user){
+    alert("Please login to view your certificate");
+    window.location.href = "login.html";
+  }
+
+  // Inject values
+  document.getElementById("studentName").innerText = user.name;
+</script>
+
+</body>
+</html>
